@@ -13,5 +13,5 @@ VALUES ('Atleta', 'Perfil del Atleta', TRUE, CURRENT_TIMESTAMP);
 
 -- Users
 
-INSERT INTO users (name, password, fullname, email, idProfile, active, createddate)
+INSERT INTO users (name, password, fullname, email, profileid, active, createddate)
 VALUES ('admin', '$2a$10$RtmjRYFJkMkY3HpfK9UkNuu/6S9aKkP0t4vYDVP/0ZSekDgjhg61C', 'Administrador', 'admin@mail.com', 1, TRUE, CURRENT_TIMESTAMP);

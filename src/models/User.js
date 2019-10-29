@@ -18,11 +18,7 @@ const User = sequelize.define('users', {
     email: {
         type: Sequelize.TEXT
     },
-<<<<<<< HEAD
     profileid: {
-=======
-    profileId: {
->>>>>>> 1316f13d4a5331f7a677eba6b533ae998dc6283c
         type: Sequelize.INTEGER
     },
     active: {
