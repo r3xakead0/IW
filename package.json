@@ -1,14 +1,14 @@
 {
-  "name": "ironwarriors",
-  "version": "1.0.0",
+  "name": "IronWarriors",
+  "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js --exec babel-node",
     "build": "babel src --out-dir dist",
-    "start": "node dist/index.js"
+    "start": "node src/index.js"
   },
-  "author": "",
+  "author": "Afu Tse",
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.6.0",
@@ -16,7 +16,12 @@
     "morgan": "^1.9.1",
     "pg": "^7.12.1",
     "pg-hstore": "^2.3.3",
-    "sequelize": "^5.18.4"
+    "sequelize": "^5.18.4",
+    "bcryptjs": "^2.4.3",
+    "express-handlebars": "^3.1.0",
+    "fs-extra": "^8.1.0",
+    "moment": "^2.24.0",
+    "multer": "^1.4.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.6.0",
