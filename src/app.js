@@ -3,6 +3,7 @@ import morgan from "morgan";
 import path from "path";
 import exphbs from "express-handlebars";
 import multer from "multer";
+import bodyParser from "body-parser";
 
 // importing routes
 import profileRoutes from "./routes/profiles";
@@ -25,8 +26,19 @@ app.set('view engine', 'hbs');
 
 // middlewares
 app.use(morgan('dev'));
-app.use(json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(multer({ dest: path.join(__dirname, '/public/document/temp') }).single('documento'))
+app.use(function (req, res, next) {
+  if (req.query._method == 'DELETE') {
+    req.method = 'DELETE';
+    req.url = req.path;
+  } else if (req.query._method == 'PUT') {
+    req.method = 'PUT';
+    req.url = req.path;
+  }
+  next();
+});
 
 // routes
 app.use('/profiles', profileRoutes);

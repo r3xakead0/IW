@@ -1,118 +1,59 @@
-<div class="container pt-4">
+<div class="container-fluid pt-4">
     <div class="row">
-        <div class="col-md-10 mx-auto">
-            <form action="/tickets/edit/{{ticket.nroTicket}}" method="POST">
-                <div class="form-group row">
-                    <label for="nroTicket" class="col-sm-2 col-form-label">Nro Ticket</label>
-                    <div class="col-sm-4">
-                        <input type="number" readonly id="nroTicket" name="nroTicket" class="form-control"
-                            value="{{ticket.nroTicket}}">
-                    </div>
-                    <label for="equipo" class="col-sm-2 col-form-label">Equipo</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="equipo" name="equipo">
-                            {{#each equipos}}
-                            <option value="{{idEquipo}}" {{isSelected idEquipo ../ticket.idEquipo}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="sala" class="col-sm-2 col-form-label">Sala</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="sala" name="sala">
-                            {{#each salas}}
-                            <option value="{{idSala}}" {{isSelected idSala ../ticket.idSala}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <label for="especialidad" class="col-sm-2 col-form-label">Especialidad</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="especialidad" name="especialidad">
-                            {{#each especialidades}}
-                            <option value="{{idEspecialidad}}" {{isSelected idEspecialidad ../ticket.idEspecialidad}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="fechaHoraInicio" class="col-sm-2 col-form-label">Inicio</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" id="fechaHoraInicio" name="fechaHoraInicio" class="form-control" value="{{ticket.fechaHoraInicio}}">
-                    </div>
-                    <label for="fechaHoraFin" class="col-sm-2 col-form-label">Final</label>
-                    <div class="col-sm-4">
-                        <input type="datetime-local" id="fechaHoraFin" name="fechaHoraFin" class="form-control" value="{{ticket.fechaHoraFin}}">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="supervisor" class="col-sm-2 col-form-label">Supervisor</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="supervisor" name="supervisor">
-                            {{#each supervisores}}
-                            <option value="{{idSupervisor}}" {{isSelected idSupervisor ../ticket.idSupervisor}}>{{nombres}} {{apellidos}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <label for="actividad" class="col-sm-2 col-form-label">Actividad</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="actividad" name="actividad">
-                            {{#each actividades}}
-                            <option value="{{idActividad}}" {{isSelected idActividad ../ticket.idActividad}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="descripcionTrabajo" class="col-sm-2 col-form-label">Descripcion del trabajo</label>
-                    <div class="col-sm-10">
-                        <textarea id="descripcionTrabajo" name="descripcionTrabajo" rows="3"
-                            class="form-control">{{ticket.descripcionTrabajo}}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="cliente" class="col-sm-2 col-form-label">Cliente</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="cliente" name="cliente">
-                            {{#each clientes}}
-                            <option value="{{idCliente}}" {{isSelected idCliente ../ticket.idCliente}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <label for="proveedor" class="col-sm-2 col-form-label">Proveedor</label>
-                    <div class="col-sm-4">
-                        <select class="form-control" id="proveedor" name="proveedor">
-                            {{#each proveedores}}
-                            <option value="{{idProveedor}}" {{isSelected idProveedor ../ticket.idProveedor}}>{{nombre}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="personalCliente" class="col-sm-2 col-form-label">Personal Cliente</label>
-                    <div class="col-sm-4">
-                        <textarea id="personalCliente" name="personalCliente" rows="2"
-                            class="form-control">{{ticket.personalCliente}}</textarea>
-                    </div>
-                    <label for="personalProveedor" class="col-sm-2 col-form-label">Personal Proveedor</label>
-                    <div class="col-sm-4">
-                        <textarea id="personalProveedor" name="personalProveedor" rows="2"
-                            class="form-control">{{ticket.personalProveedor}}</textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="personalGtd" class="col-sm-2 col-form-label">Personal GTD</label>
-                    <div class="col-sm-10">
-                        <textarea id="personalGtd" name="personalGtd" rows="2"
-                            class="form-control">{{ticket.personalGtd}}</textarea>
-                    </div>
-                </div>
+        <div class="col-md-6 mx-auto">
+            {{#with user}}
+            <form action="/users/edit/{{id}}?_method=PUT" method="POST">
                 <div class="form-group">
-                    <button class="btn btn-success btn-block">
-                        Guardar
-                    </button>
+                    <span class="d-block bg-primary text-white text-center">Editar Usuario</span>
+                </div>
+                <div class="form-group align-items-center row">
+                    <label for="name" class="col-md-3 col-form-label">Usuario</label>
+                    <div class="col-md-7">
+                        <input id="name" name="name" class="form-control" value="{{name}}">
+                    </div>
+                    <div class="form-check col-md-2">
+                        <input class="form-check-input" type="checkbox" id="active">
+                        <label class="form-check-label" for="active">
+                            Activo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="password" class="col-md-3 col-form-label">Contrase&ntilde;a</label>
+                    <div class="col-md-9">
+                        <input type="password" id="password" name="password" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="fullname" class="col-md-3 col-form-label">Nombre Completo</label>
+                    <div class="col-md-9">
+                        <input id="fullname" name="fullname" class="form-control" value="{{fullname}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="email" class="col-md-3 col-form-label">Correo Electronico</label>
+                    <div class="col-md-9">
+                        <input id="email" name="email" class="form-control" value="{{email}}">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="profileid" class="col-sm-3 col-form-label">Perfil</label>
+                    <div class="col-md-9">
+                        <select class="form-control" id="profileid" name="profileid">
+                            {{#each profiles}}
+                            <option value="{{id}}">{{name}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <a href="/users" class="btn btn-danger">
+                        <span>Cancelar</span>
+                    </a>
+                    <button class="btn btn-success">Guardar</button>
                 </div>
             </form>
+            {{/with}}
         </div>
 
     </div>

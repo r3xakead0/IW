@@ -1,8 +1,10 @@
-<div class="container-fluid pt-4">
-
+<div class="container-fluid p-2">
     <div class="row">
         <div class="col col-xs-4">
-            <strong>Página {{ pagination.page }} de {{ pagination.pageCount }} </strong>
+            <a href="/users/add" class="btn btn-success">
+                <i class="fas fa-plus" title="Nuevo"></i>
+                <span>Nuevo</span>
+            </a>
         </div>
         <div class="col col-xs-8">
             <nav aria-label="navigation" class="float-right" role="pagination">
@@ -10,7 +12,11 @@
             </nav>
         </div>
     </div>
-
+    <div class="row">
+        <div class="col">
+            <span class="d-block bg-primary text-white text-center">Listado de Usuarios</span>
+        </div>
+    </div>
     <table class="table table-striped table-sm">
         <thead>
             <tr class="text-center">
@@ -18,7 +24,7 @@
                 <th scope="col">Nomble Completo</th>
                 <th scope="col">Email</th>
                 <th scope="col">Perfil </th>
-                <th scope="col">Activo</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Accion</th>
             </tr>
         </thead>
@@ -28,15 +34,21 @@
                 <td scope="row">{{name}}</td>
                 <td>{{fullname}}</td>
                 <td>{{email}}</td>
-                <td>{{profileId}}</td>
-                <td>{{active}}</td>
+                <td>{{profile.name}}</td>
                 <td class="text-center">
-                    <a href="/users/edit/{{nroTicket}}">
+                    {{#if active}}
+                    Activo
+                    {{else}}
+                    Inactivo
+                    {{/if}}
+                </td>
+                <td class="text-center">
+                    <a href="/users/edit/{{id}}" >
                         <i class="fas fa-marker" title="Modificar"></i>
-                    </a><br>
-                    <a href="/users/delete/{{../nroTicket}}">
+                    </a>
+                    <a href="/users/{{id}}?_method=DELETE">
                         <i class="far fa-trash-alt" title="Eliminar"></i>
-                    </a><br>
+                    </a>
                 </td>
             </tr>
             {{else}}
@@ -47,4 +59,5 @@
 
         </tbody>
     </table>
+</div>
 </div>
