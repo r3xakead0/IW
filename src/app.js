@@ -6,8 +6,8 @@ import multer from "multer";
 import bodyParser from "body-parser";
 
 // importing routes
-import profileRoutes from "./routes/profiles";
-import userRoutes from "./routes/users";
+import usersRoutes from "./routes/users";
+import athletesRoutes from "./routes/athletes";
 
 // initialization
 const app = express();
@@ -41,8 +41,8 @@ app.use(function (req, res, next) {
 });
 
 // routes
-app.use('/profiles', profileRoutes);
-app.use('/users', userRoutes);
+app.use('/users', usersRoutes);
+app.use('/athletes', athletesRoutes);
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));

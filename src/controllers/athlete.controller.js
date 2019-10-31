@@ -1,16 +1,15 @@
-import User from "../models/User";
-import Profile from "../models/Profile";
-import helpers from "../lib/helpers";
+import Athlete from "../models/Athlete";
+import Question from "../models/BackgroundQuestion";
 
-export async function addUser(req, res) {
+export async function addAthlete(req, res) {
     try {
-        const profiles = await Profile.findAll({
-            attributes: ['id', 'name'],
+        const questions = await Question.findAll({
+            attributes: ['id', 'description'],
             order: [
                 ['id', 'ASC']
             ]
         });
-        res.render('users/add', { profiles });
+        res.render('Athletes/add', { questions });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -19,11 +18,11 @@ export async function addUser(req, res) {
     }
 }
 
-export async function createUser(req, res) {
+export async function createAthlete(req, res) {
     const { name, password, fullname, email, profileid, active } = req.body;
     const createddate = Date.now();
     try {
-        let newUser = await User.create({
+        let newAthlete = await Athlete.create({
             name,
             password: await helpers.encryptPassword(password),
             fullname,
@@ -34,8 +33,8 @@ export async function createUser(req, res) {
         }, {
             fields: ['name', 'password', 'fullname', 'email', 'profileid', 'active', 'createddate']
         });
-        if (newUser) {
-            res.redirect('/users');
+        if (newAthlete) {
+            res.redirect('/athletes');
         }
     } catch (e) {
         res.status(500).json({
@@ -45,10 +44,10 @@ export async function createUser(req, res) {
     }
 }
 
-export async function editUser(req, res) {
+export async function editAthlete(req, res) {
     try {
         const { id } = req.params;
-        const user = await User.findOne({
+        const Athlete = await Athlete.findOne({
             attributes: ['id', 'name', 'fullname', 'email', 'profileid', 'active'],
             where: { id },
             include: [{
@@ -62,7 +61,7 @@ export async function editUser(req, res) {
                 ['id', 'ASC']
             ]
         });
-        res.render('users/edit', { user, profiles });
+        res.render('Athletes/edit', { Athlete, profiles });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -71,13 +70,13 @@ export async function editUser(req, res) {
     }
 }
 
-export async function updateUser(req, res) {
+export async function updateAthlete(req, res) {
     const { id } = req.params;
     const { name, password, fullname, email, profileid, active } = req.body;
     const updateddate = Date.now();
     try {
 
-        const updateRowCount = await User.update({
+        const updateRowCount = await Athlete.update({
             name,
             password: await helpers.encryptPassword(password),
             fullname,
@@ -91,7 +90,7 @@ export async function updateUser(req, res) {
             }
         );
         if (updateRowCount > 0) {
-            res.redirect('/users');
+            res.redirect('/athletes');
         }
     } catch (e) {
         res.status(500).json({
@@ -101,31 +100,27 @@ export async function updateUser(req, res) {
     }
 }
 
-export async function getUsers(req, res) {
+export async function getAthletes(req, res) {
     try {
         const page = req.query.page || 1;
         const pageSize = 10;
 
         const offset = (page - 1) * pageSize;
         const limit = offset + pageSize;
-        const totalRows = await User.count();
+        const totalRows = await Athlete.count();
 
         const pageCount = Math.ceil(totalRows / pageSize);
 
-        const users = await User.findAll({
+        const Athletes = await Athlete.findAll({
             limit,
             offset,
-            attributes: ['id', 'name', 'fullname', 'email', 'profileid', 'active'],
+            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'profileid', 'active'],
             order: [
                 ['id', 'ASC']
-            ],
-            include: [{
-                model: Profile,
-                attributes: ['name'],
-            }]
+            ]
         });
-        res.render('users/list', {
-            users,
+        res.render('athletes/list', {
+            Athletes,
             pagination: {
                 page,
                 limit: pageSize,
@@ -142,16 +137,16 @@ export async function getUsers(req, res) {
     }
 }
 
-export async function deleteUser(req, res) {
+export async function deleteAthlete(req, res) {
     try {
         const { id } = req.params;
-        const deleteRowCount = await User.destroy({
+        const deleteRowCount = await Athlete.destroy({
             where: {
                 id
             }
         });
         if (deleteRowCount > 0) {
-            res.redirect('/users');
+            res.redirect('/athletes');
         }
     } catch (e) {
         res.status(500).json({

@@ -1,0 +1,86 @@
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form action="/athletes/add" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstname">Nombres</label>
+                        <input type="text" class="form-control" id="firstname" placeholder="Nombres">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="lastname">Apellidos</label>
+                        <input type="text" class="form-control" id="lastname" placeholder="Apellidos">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="birthdate">Fecha Nacimiento</label>
+                        <input type="datetime-local" class="form-control" id="birthdate">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="age">Edad</label>
+                        <input type="number" class="form-control" id="age" readonly>
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="phonenumber">Telefono</label>
+                        <input type="text" class="form-control" id="phonenumber" placeholder="Telefono">
+                    </div>
+                    <div class="form-group col-md-1">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="active">
+                            <label class="form-check-label" for="active">Activo</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="birthdate">Talla (cm)</label>
+                        <input type="text" class="form-control" id="birthdate">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="age">Peso (kg)</label>
+                        <input type="text" class="form-control" id="age">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="age">Grupo Sanguineo</label>
+                        <input type="text" class="form-control" id="age">
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="age">% Grasa</label>
+                        <input type="text" class="form-control" id="age">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="birthdate">Circunferencia Cintura (cm)</label>
+                        <input type="text" class="form-control" id="birthdate">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="age">Circunferencia del medio muslo (cm)</label>
+                        <input type="text" class="form-control" id="age">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="birthdate">Lesiones Recientes</label>
+                        <input type="text" class="form-control" id="birthdate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="birthdate">Otros Deportes y Actividades</label>
+                        <input type="text" class="form-control" id="birthdate">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <a href="/athletes" class="btn btn-danger">
+                            <span>Cancelar</span>
+                        </a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
