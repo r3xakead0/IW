@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS athletes(
 	injuries text,
 	otheractivities text,
 	backgrounddescription text,
+	objectives text,
 	nutritiondescription text,
 	active boolean NOT NULL DEFAULT FALSE,
    	updateddate timestamp,

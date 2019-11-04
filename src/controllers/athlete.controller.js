@@ -19,20 +19,45 @@ export async function addAthlete(req, res) {
 }
 
 export async function createAthlete(req, res) {
-    const { name, password, fullname, email, profileid, active } = req.body;
+    const { firstname, lastname, birthdate, phonenumber, active } = req.body;
+    const { running, cycling, swimming, conditioning, strength, otherobjectives } = req.body;
+    const { size, weight, bloodtype, fatpercentage, waistcircumference, middlethighcircumference } = req.body;
+    const { injuries, otheractivities, backgrounddescription, objectives, nutritiondescription } = req.body; 
     const createddate = Date.now();
     try {
         let newAthlete = await Athlete.create({
-            name,
-            password: await helpers.encryptPassword(password),
-            fullname,
-            email,
-            profileid,
-            active,
+            firstname, 
+            lastname,
+            birthdate, 
+            phonenumber, 
+            running: (running === 'on'),
+            cycling: (cycling === 'on'), 
+            swimming: (swimming === 'on'), 
+            conditioning: (conditioning === 'on'), 
+            strength: (strength === 'on'), 
+            otherobjectives, 
+            size, 
+            weight, 
+            bloodtype, 
+            fatpercentage, 
+            waistcircumference,
+            middlethighcircumference, 
+            injuries, 
+            otheractivities, 
+            backgrounddescription, 
+            objectives, 
+            nutritiondescription, 
+            active: (active === 'on'), 
             createddate
         }, {
-            fields: ['name', 'password', 'fullname', 'email', 'profileid', 'active', 'createddate']
+            fields: ['firstname', 'lastname', 'birthdate', 'phonenumber', 
+            'running', 'cycling', 'swimming', 'conditioning', 'strength', 
+            'otherobjectives', 'size', 'weight', 'bloodtype', 
+            'fatpercentage', 'waistcircumference', 'middlethighcircumference', 'injuries',
+            'otheractivities', 'backgrounddescription', 'objectives', 'nutritiondescription',
+            'active', 'createddate']
         });
+        console.log(newAthlete);
         if (newAthlete) {
             res.redirect('/athletes');
         }
@@ -114,7 +139,7 @@ export async function getAthletes(req, res) {
         const Athletes = await Athlete.findAll({
             limit,
             offset,
-            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'profileid', 'active'],
+            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'phonenumber', 'active'],
             order: [
                 ['id', 'ASC']
             ]

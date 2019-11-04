@@ -12,14 +12,26 @@ const Athlete = sequelize.define('athletes', {
     lastname: {
         type: Sequelize.STRING(50)
     },
-    fullname: {
-        type: Sequelize.TEXT
-    },
     birthdate: {
         type: Sequelize.DATEONLY
     },
     phonenumber: {
         type: Sequelize.STRING(20)
+    },
+    running: {
+        type: Sequelize.BOOLEAN
+    },
+    cycling: {
+        type: Sequelize.BOOLEAN
+    },
+    swimming: {
+        type: Sequelize.BOOLEAN
+    },
+    conditioning: {
+        type: Sequelize.BOOLEAN
+    },
+    strength: {
+        type: Sequelize.BOOLEAN
     },
     otherobjectives: {
         type: Sequelize.TEXT
@@ -49,6 +61,9 @@ const Athlete = sequelize.define('athletes', {
         type: Sequelize.TEXT
     },
     backgrounddescription: {
+        type: Sequelize.TEXT
+    },
+    objectives: {
         type: Sequelize.TEXT
     },
     nutritiondescription: {
