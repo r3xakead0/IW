@@ -1,58 +1,214 @@
 <div class="container-fluid pt-4">
     <div class="row">
-        <div class="col-md-6 mx-auto">
-            <form action="/users/edit/{{user.id}}?_method=PUT" method="POST">
-                <div class="form-group">
-                    <span class="d-block bg-primary text-white text-center">Editar Usuario</span>
-                </div>
-                <div class="form-group align-items-center row">
-                    <label for="name" class="col-md-3 col-form-label">Usuario</label>
-                    <div class="col-md-7">
-                        <input id="name" name="name" class="form-control" value="{{user.name}}" required>
-                    </div>
-                    <div class="form-check col-md-2">
-                        <input class="form-check-input" type="checkbox" id="active" name="active" {{#if user.active}}checked{{/if}}>
-                        <label class="form-check-label" for="active" >
-                            Activo
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="password" class="col-md-3 col-form-label">Contrase&ntilde;a</label>
-                    <div class="col-md-9">
-                        <input type="password" id="password" name="password" class="form-control" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="fullname" class="col-md-3 col-form-label">Nombre Completo</label>
-                    <div class="col-md-9">
-                        <input id="fullname" name="fullname" class="form-control" value="{{user.fullname}}" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="email" class="col-md-3 col-form-label">Correo Electronico</label>
-                    <div class="col-md-9">
-                        <input id="email" name="email" class="form-control" value="{{user.email}}" required>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="profileid" class="col-sm-3 col-form-label">Perfil</label>
-                    <div class="col-md-9">
-                        <select class="form-control" id="profileid" name="profileid">
-                            {{#each profiles}}
-                            <option value="{{id}}" {{isSelected id ../user.profileid}}>{{name}}</option>
-                            {{/each}}
-                        </select>
+        <div class="col-md-10 mx-auto">
+            <form action="/athletes/edit/{{athlete.id}}?_method=PUT" method="POST">
+                <div class="card">
+                    <h5 class="card-header text-white bg-primary">DATOS PERSONALES</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="firstname">Nombres</label>
+                                <input type="text" class="form-control" id="firstname" name="firstname" placeholder="Nombres" value="{{athlete.firstname}}" required>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="lastname">Apellidos</label>
+                                <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos" value="{{athlete.lastname}}" required>
+                            </div>
+                        </div>
+                        <div class="form-row mt-4">
+                            <div class="form-group col-md-3">
+                                <label for="birthdate">Fecha Nacimiento</label>
+                                <input type="date" class="form-control" id="birthdate" name="birthdate" value="{{athlete.birthdate}}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="age">Edad</label>
+                                <input type="number" class="form-control text-right" id="age" value = "{{athlete.age}}" readonly>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="phonenumber">Telefono</label>
+                                <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Telefono" value="{{athlete.phonenumber}}" required>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="active" name="active" {{#if athlete.active}}checked{{/if}}>
+                                    <label class="form-check-label" for="active">Activo</label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group text-center">
-                    <a href="/users" class="btn btn-danger">
-                        <span>Cancelar</span>
-                    </a>
-                    <button class="btn btn-success">Guardar</button>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">OBJETIVO DEPORTIVO</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="running" name="running" {{#if athlete.running}}checked{{/if}}>
+                                    <label class="form-check-label" for="running">
+                                        Running
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="cycling" name="cycling" {{#if athlete.cycling}}checked{{/if}}>
+                                    <label class="form-check-label" for="cycling">
+                                        Ciclismo
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="swimming" name="swimming" {{#if athlete.swimming}}checked{{/if}}>
+                                    <label class="form-check-label" for="swimming">
+                                        Natacion
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="conditioning" name="conditioning" {{#if athlete.conditioning}}checked{{/if}}>
+                                    <label class="form-check-label" for="conditioning">
+                                        Acondicionamiento Fisico
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="strength" name="strength" {{#if athlete.strength}}checked{{/if}}>
+                                    <label class="form-check-label" for="strength">
+                                        Fuerza
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="other">
+                                    <label class="form-check-label" for="other">
+                                        Otros
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <input type="text" class="form-control" id="otherobjectives" name="otherobjectives" value="{{athlete.otherobjectives}}" readonly="readonly">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">CARACTERISTICAS</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                                <label for="size">Talla (cm)</label>
+                                <input type="number" class="form-control text-right" id="size" name="size" placeholder="0.00" value="{{athlete.size}}">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="weight">Peso (kg)</label>
+                                <input type="number" class="form-control text-right" id="weight" name="weight" placeholder="0.00" value="{{athlete.weight}}">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="bloodtype">Grupo Sanguineo</label>
+                                <select class="form-control" id="bloodtype" name="bloodtype">
+                                    <option value="O negativo">O negativo</option>
+                                    <option value="O positivo">O positivo</option>
+                                    <option value="A negativo">A negativo</option>
+                                    <option value="A positivo">A positivo</option>
+                                    <option value="B negativo">B negativo</option>
+                                    <option value="B positivo">B positivo</option>
+                                    <option value="AB negativo">AB negativo</option>
+                                    <option value="AB positivo">AB positivo</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="fatpercentage">% Grasa</label>
+                                <input type="number" class="form-control text-right" id="fatpercentage" name="fatpercentage" placeholder="0.00" value="{{athlete.fatpercentage}}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="waistcircumference">Circunferencia Cintura (cm)</label>
+                                <input type="number" class="form-control text-right" id="waistcircumference" name="waistcircumference" placeholder="0.00" value="{{athlete.waistcircumference}}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="middlethighcircumference">Circunferencia del medio muslo (cm)</label>
+                                <input type="number" class="form-control text-right" id="middlethighcircumference" name="middlethighcircumference" placeholder="0.00" value="{{athlete.middlethighcircumference}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">ANTECEDENTES O PATOLOGIAS</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="injuries">Lesiones Recientes</label>
+                                <input type="text" class="form-control" id="injuries" name="injuries" value="{{athlete.injuries}}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="otheractivities">Otros Deportes y Actividades</label>
+                                <input type="text" class="form-control" id="otheractivities" name="otheractivities" value="{{athlete.otheractivities}}">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label>Marque con una cruz o resalte en cada pregunta en caso la respuesta sea positiva</label>
+                                {{#each questions}}
+                                 <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="question{{id}}">
+                                    <label class="form-check-label" for="question{{id}}">
+                                        {{description}}
+                                    </label>
+                                </div>
+                                {{/each}}
+                            </div>
+                            <div class="form-group col-md-12">
+                                <label for="backgrounddescription">En caso de haber marcado una o mas opciones describala en específico</label>
+                                <input type="text" class="form-control" id="backgrounddescription" name="backgrounddescription" value="{{athlete.backgrounddescription}}">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">OBJETIVOS</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="objectives">En pocas líneas describe tus intenciones con respecto a seguir un plan para la salud y el deporte</label>
+                                <textarea class="form-control" id="objectives" name="objectives" rows="3">{{athlete.objectives}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">ALIMENTACION</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="nutritiondescription">Descríbeme tu alimentación en un día tradicional (la mayor sinceridad y detalle posible para poder entenderte y ver en que podemos mejorarlo) considera todas las comidas, bebidas, snacks, meriendas, bebidas y comidas especiales</label>
+                                <textarea class="form-control" id="nutritiondescription" name="nutritiondescription" rows="8">{{athlete.nutritiondescription}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="form-group">
+                        <a href="/athletes" class="btn btn-danger">
+                            <span>Cancelar</span>
+                        </a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
                 </div>
             </form>
         </div>
-
     </div>
 </div>
+<script>
+document.getElementById('birthdate').onchange = function() {
+    document.getElementById('age').value = moment().diff(moment(this.value, 'YYYY-MM-DD'), 'years');
+};
+document.getElementById('other').onclick = function() {
+    var txtOther = document.getElementById('otherobjectives');
+    if (this.checked) {
+        txtOther.removeAttribute('readonly');
+    } else {
+        txtOther.setAttribute('readonly', true); 
+    }
+};
+</script>

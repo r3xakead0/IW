@@ -1,7 +1,7 @@
 <div class="container-fluid p-2">
     <div class="row">
         <div class="col col-xs-4">
-            <a href="/athlete/add" class="btn btn-success">
+            <a href="/athletes/add" class="btn btn-success">
                 <i class="fas fa-plus" title="Nuevo"></i>
                 <span>Nuevo</span>
             </a>
@@ -23,6 +23,7 @@
                 <th scope="col">Nombres</th>
                 <th scope="col">Apellidos</th>
                 <th scope="col">Nacimiento</th>
+                <th scope="col">Edad</th>
                 <th scope="col">Telefono</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Accion</th>
@@ -34,6 +35,7 @@
                 <td scope="row">{{firstname}}</td>
                 <td>{{lastname}}</td>
                 <td>{{birthdate}}</td>
+                <td>{{age}}</td>
                 <td>{{phonenumber}}</td>
                 <td class="text-center">
                     {{#if active}}
@@ -43,17 +45,17 @@
                     {{/if}}
                 </td>
                 <td class="text-center">
-                    <a href="/athlete/edit/{{id}}" >
+                    <a href="/athletes/edit/{{id}}" >
                         <i class="fas fa-marker" title="Modificar"></i>
                     </a>
-                    <a href="/athlete/{{id}}?_method=DELETE">
+                    <a href="/athletes/{{id}}?_method=DELETE">
                         <i class="far fa-trash-alt" title="Eliminar"></i>
                     </a>
                 </td>
             </tr>
             {{else}}
             <tr class="text-center">
-                <td colspan="6">No existen registros</td>
+                <td colspan="7">No existen registros</td>
             </tr>
             {{/each}}
 

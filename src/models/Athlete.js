@@ -1,5 +1,6 @@
 import Sequelize from "sequelize";
 import { sequelize } from "../database/database";
+import moment from "moment";
 
 const Athlete = sequelize.define('athletes', {
     id: {
@@ -14,6 +15,12 @@ const Athlete = sequelize.define('athletes', {
     },
     birthdate: {
         type: Sequelize.DATEONLY
+    },
+    age: {
+        type: Sequelize.VIRTUAL,
+        get: function () {
+            return moment().diff(moment(this.get('birthdate'), 'YYYY-MM-DD'), 'years')
+        }
     },
     phonenumber: {
         type: Sequelize.STRING(20)
@@ -46,7 +53,7 @@ const Athlete = sequelize.define('athletes', {
         type: Sequelize.STRING(10)
     },
     fatpercentage: {
-        type: Sequelize.DECIMAL(5,2)
+        type: Sequelize.DECIMAL(5, 2)
     },
     waistcircumference: {
         type: Sequelize.INTEGER

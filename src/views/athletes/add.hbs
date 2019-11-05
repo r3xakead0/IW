@@ -208,6 +208,10 @@ OCACIONES ESPECIALES :
     </div>
 </div>
 <script>
+document.getElementById('birthdate').value = new Date().toJSON().slice(0,10);
+document.getElementById('birthdate').onchange = function() {
+    document.getElementById('age').value = moment().diff(moment(this.value, 'YYYY-MM-DD'), 'years');
+};
 document.getElementById('other').onclick = function() {
     var txtOther = document.getElementById('otherobjectives');
     if (this.checked) {

@@ -72,21 +72,28 @@ export async function createAthlete(req, res) {
 export async function editAthlete(req, res) {
     try {
         const { id } = req.params;
-        const Athlete = await Athlete.findOne({
-            attributes: ['id', 'name', 'fullname', 'email', 'profileid', 'active'],
+
+        const athlete = await Athlete.findOne({
+            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'phonenumber', 'age',
+            'running', 'cycling', 'swimming', 'conditioning', 'strength', 
+            'otherobjectives', 'size', 'weight', 'bloodtype', 
+            'fatpercentage', 'waistcircumference', 'middlethighcircumference', 'injuries',
+            'otheractivities', 'backgrounddescription', 'objectives', 'nutritiondescription',
+            'active'],
             where: { id },
-            include: [{
-                model: Profile,
-                attributes: ['name'],
-            }]
-        });
-        const profiles = await Profile.findAll({
-            attributes: ['id', 'name'],
             order: [
                 ['id', 'ASC']
             ]
         });
-        res.render('Athletes/edit', { Athlete, profiles });
+
+        const questions = await Question.findAll({
+            attributes: ['id', 'description'],
+            order: [
+                ['id', 'ASC']
+            ]
+        });
+
+        res.render('Athletes/edit', { athlete, questions });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -97,16 +104,35 @@ export async function editAthlete(req, res) {
 
 export async function updateAthlete(req, res) {
     const { id } = req.params;
-    const { name, password, fullname, email, profileid, active } = req.body;
+    const { firstname, lastname, birthdate, phonenumber, active } = req.body;
+    const { running, cycling, swimming, conditioning, strength, otherobjectives } = req.body;
+    const { size, weight, bloodtype, fatpercentage, waistcircumference, middlethighcircumference } = req.body;
+    const { injuries, otheractivities, backgrounddescription, objectives, nutritiondescription } = req.body; 
     const updateddate = Date.now();
     try {
 
         const updateRowCount = await Athlete.update({
-            name,
-            password: await helpers.encryptPassword(password),
-            fullname,
-            email,
-            profileid,
+            firstname, 
+            lastname,
+            birthdate, 
+            phonenumber, 
+            running: (running === 'on'),
+            cycling: (cycling === 'on'), 
+            swimming: (swimming === 'on'), 
+            conditioning: (conditioning === 'on'), 
+            strength: (strength === 'on'), 
+            otherobjectives, 
+            size, 
+            weight, 
+            bloodtype, 
+            fatpercentage, 
+            waistcircumference,
+            middlethighcircumference, 
+            injuries, 
+            otheractivities, 
+            backgrounddescription, 
+            objectives, 
+            nutritiondescription, 
             active: (active === 'on'),
             updateddate
         },
@@ -139,7 +165,7 @@ export async function getAthletes(req, res) {
         const Athletes = await Athlete.findAll({
             limit,
             offset,
-            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'phonenumber', 'active'],
+            attributes: ['id', 'firstname', 'lastname', 'birthdate', 'age', 'phonenumber', 'active'],
             order: [
                 ['id', 'ASC']
             ]
