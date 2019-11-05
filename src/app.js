@@ -8,6 +8,7 @@ import bodyParser from "body-parser";
 // importing routes
 import usersRoutes from "./routes/users";
 import athletesRoutes from "./routes/athletes";
+import evaluationsRoutes from "./routes/evaluation";
 
 // initialization
 const app = express();
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
 // routes
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);
+app.use('/evaluations', evaluationsRoutes);
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));

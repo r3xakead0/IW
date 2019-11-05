@@ -2,6 +2,8 @@ import Sequelize from "sequelize";
 import { sequelize } from "../database/database";
 import moment from "moment";
 
+import Evaluation from "./Evaluation";
+
 const Athlete = sequelize.define('athletes', {
     id: {
         type: Sequelize.INTEGER,
@@ -88,5 +90,8 @@ const Athlete = sequelize.define('athletes', {
 }, {
     timestamps: false
 });
+
+Athlete.hasMany(Evaluation, { foreignKey: 'athleteid', sourceKey: 'id' });
+Evaluation.belongsTo(Athlete, { foreignKey: 'athleteid', sourceKey: 'id' });
 
 export default Athlete;

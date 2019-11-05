@@ -1,0 +1,117 @@
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form action="/evaluations/add" method="POST">
+                <input type="hidden" id="athleteid" name="athleteid" value="{{athleteid}}">
+                <div class="card">
+                    <h5 class="card-header text-white bg-primary">ACORTAMIENTOS</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <span class="badge badge-warning">Escala 1 a 10, 1: muy acortado 5: medianamente acortado 10: sin acortamiento, 0: hay dolor</span>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="ankles">Tobillos:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="ankles" name="ankles" value="0">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="abductors">Abductores:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="abductors" name="abductors" value="0">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="hipflexors">Flexores de cadera (psoas):</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="hipflexors" name="hipflexors" value="0">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="pectoral">Pectoral:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="pectoral" name="pectoral" value="0">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="shoulder">Hombro:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="shoulder" name="shoulder" value="0">
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="pyramidal">Piramidal:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="pyramidal" name="pyramidal" value="0">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="hamstrings">Isquiotibiales:</label>
+                                <input type="number" min="0" max="10" class="form-control text-right" id="hamstrings" name="hamstrings" value="0">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">CORE</h5>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label for="frontcoretest" class="col-md-2 col-form-label">Test core frontal:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="frontcoretest" name="frontcoretest" class="form-control" required>
+                            </div>
+                            <label for="sidecoretest" class="col-md-2 col-form-label">Test core lateral:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="sidecoretest" name="sidecoretest" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="amnesiagluteus" class="col-md-2 col-form-label">Amnesia Glutea:</label>
+                            <div class="col-md-4">
+                                <input type="text" id="amnesiagluteus" name="amnesiagluteus" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">CONTRACTURAS</h5>
+                    <div class="card-body">
+                        <textarea class="form-control" id="contracts" name="contracts" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">EQUILIBRIO</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="birdog">Birdog:</label>
+                                <input type="text" class="form-control" id="birdog" name="birdog" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="standup">Stand-up:</label>
+                                <input type="text" class="form-control" id="standup" name="standup" required>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="genu">Valgo o Varo:</label>
+                                <input type="text" class="form-control" id="genu" name="genu" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">BALANCE</h5>
+                    <div class="card-body">
+                        <textarea class="form-control" id="balance" name="balance" rows="2"></textarea>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h5 class="card-header text-white bg-primary">RECOMENDACIONES Y CORRECTIVOS</h5>
+                    <div class="card-body">
+                        <textarea class="form-control" id="recomendations" name="recomendations" rows="4"></textarea>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="form-group">
+                        <a href="/athletes" class="btn btn-danger">
+                            <span>Cancelar</span>
+                        </a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
