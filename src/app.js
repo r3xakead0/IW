@@ -9,6 +9,7 @@ import bodyParser from "body-parser";
 import usersRoutes from "./routes/users";
 import athletesRoutes from "./routes/athletes";
 import evaluationsRoutes from "./routes/evaluation";
+import plansRoutes from "./routes/plans";
 
 // initialization
 const app = express();
@@ -45,6 +46,7 @@ app.use(function (req, res, next) {
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);
 app.use('/evaluations', evaluationsRoutes);
+app.use('/plans', plansRoutes);
 
 // public
 app.use(express.static(path.join(__dirname, 'public')));

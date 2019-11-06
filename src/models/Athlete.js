@@ -3,6 +3,7 @@ import { sequelize } from "../database/database";
 import moment from "moment";
 
 import Evaluation from "./Evaluation";
+import Plan from "./Plan";
 
 const Athlete = sequelize.define('athletes', {
     id: {
@@ -93,5 +94,8 @@ const Athlete = sequelize.define('athletes', {
 
 Athlete.hasMany(Evaluation, { foreignKey: 'athleteid', sourceKey: 'id' });
 Evaluation.belongsTo(Athlete, { foreignKey: 'athleteid', sourceKey: 'id' });
+
+Athlete.hasMany(Plan, { foreignKey: 'athleteid', sourceKey: 'id' });
+Plan.belongsTo(Athlete, { foreignKey: 'athleteid', sourceKey: 'id' });
 
 export default Athlete;

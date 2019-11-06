@@ -1,0 +1,63 @@
+<div class="container-fluid p-2">
+    <div class="card">
+        <div class="card-header text-white text-center bg-primary">DETALLE DEL PLAN</div>
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Dia</th>
+                                <th scope="col">Fecha</th>
+                                <th scope="col">Disciplina</th>
+                                <th scope="col">Minutos</th>
+                                <th scope="col">Metros</th>
+                                <th scope="col">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each plans}}
+                            <tr>
+                                <td scope="row">{{day}}</td>
+                                <td>{{plandate}}</td>
+                                <td>{{sport}}</td>
+                                <td>{{minutes}}</td>
+                                <td>{{meters}}</td>
+                                <td class="text-center">
+                                    <a href="/plans/edit/{{id}}" >
+                                        <i class="fas fa-marker" title="Modificar"></i>
+                                    </a>
+                                    <a href="/plans/{{id}}?_method=DELETE">
+                                        <i class="far fa-trash-alt" title="Eliminar"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{else}}
+                            <tr class="text-center">
+                                <td colspan="6">No existen registros</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+        </div>
+        <div class="card-footer p-0">
+            <div class="row">
+                <div class="col-8">
+                    <a href="/plans/add/{{athleteid}}" class="btn btn-success">
+                        <i class="fas fa-plus" title="Nuevo"></i>
+                        <span>Nuevo</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <nav aria-label="navigation" class="float-right" role="pagination">
+                        {{{paginate pagination }}}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

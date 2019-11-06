@@ -1,0 +1,90 @@
+<div class="container-fluid pt-4">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <form action="/plans/edit/{{plan.id}}?_method=PUT" method="POST">
+                <input type="hidden" id="athleteid" name="athleteid" value="{{athlete.id}}"> 
+                <div class="card">
+                    <h5 class="card-header text-white bg-primary">ATLETA</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-11">
+                                <label for="athlete">Apellidos y Nombres</label>
+                                <input type="text" class="form-control" id="athlete" name="athlete" value="{{athlete.lastname}}, {{athlete.firstname}}" readonly>
+                            </div>
+                            <div class="form-group col-md-1">
+                                <label for="age">Edad</label>
+                                <input type="number" class="form-control text-right" id="age" name="age" value="{{athlete.age}}" readonly>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <h5 class="card-header text-white bg-primary">PLAN</h5>
+                    <div class="card-body">
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="sport">Deporte</label>
+                                <select class="form-control" id="sport" name="sport">
+                                    <option value="running" {{isSelected plan.sport "running"}}>Running</option>
+                                    <option value="cycling" {{isSelected plan.sport "cycling"}}>Ciclismo</option>
+                                    <option value="swimming" {{isSelected plan.sport "swimming"}}>Natacion</option>
+                                    <option value="conditioning" {{isSelected plan.sport "conditioning"}}>Acondicionamiento Fisico</option>
+                                    <option value="strength" {{isSelected plan.sport "strength"}}>Fuerza</option>
+                                    <option value="other" {{isSelected plan.sport "other"}}>Otros</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="plandate">Fecha</label>
+                                <input type="date" class="form-control" id="plandate" name="plandate" value="{{plan.plandate}}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="day">Dia</label>
+                                <input type="text" class="form-control text-center" id="day" name="day" readonly>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="type">Tipo</label>
+                                <select class="form-control" id="type" name="type">
+                                    <option value="onsite">Presencial</option>
+                                    <option value="virtual">Virtual</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="minutes">Tiempo (Minutos)</label>
+                                <input type="number" class="form-control text-right" id="minutes" name="minutes" min="0" value="{{plan.minutes}}" required>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="meters">Distancia (Metros)</label>
+                                <input type="number" class="form-control text-right" id="meters" name="meters" min="0" value="{{plan.meters}}" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label for="jobs">Trabajo</label>
+                                <textarea class="form-control" id="jobs" name="jobs" rows="3">{{plan.jobs}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-2">
+                    <div class="form-group">
+                        <a href="/plans" class="btn btn-danger">
+                            <span>Cancelar</span>
+                        </a>
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById('plandate').onchange = function() {
+    document.getElementById('day').value = moment(this.value).format('dddd');
+};
+window.onload = function(e){ 
+    document.getElementById('plandate').value = new Date().toJSON().slice(0,10);
+    document.getElementById('day').value = moment().format('dddd');
+}
+</script>
