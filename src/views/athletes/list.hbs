@@ -1,71 +1,111 @@
 <div class="container-fluid p-2">
-    <div class="row">
-        <div class="col col-xs-4">
-            <a href="/athletes/add" class="btn btn-success">
-                <i class="fas fa-plus" title="Nuevo"></i>
-                <span>Nuevo</span>
-            </a>
+    <div class="card">
+        <div class="card-header text-white text-center bg-primary">LISTADO DE ATLETAS</div>
+        <div class="card-body p-0">
+            <div class="row">
+                <div class="col">
+                    <table class="table table-striped table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Nombres</th>
+                                <th scope="col">Apellidos</th>
+                                <th scope="col">Nacimiento</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Accion</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each Athletes}}
+                            <tr>
+                                <td scope="row">{{firstname}}</td>
+                                <td>{{lastname}}</td>
+                                <td>{{birthdate}}</td>
+                                <td class="text-right">{{age}}</td>
+                                <td>{{phonenumber}}</td>
+                                <td class="text-center">
+                                    {{#if active}}
+                                    Activo
+                                    {{else}}
+                                    Inactivo
+                                    {{/if}}
+                                </td>
+                                <td class="text-center">
+                                    <a href="/athletes/edit/{{id}}" >
+                                        <i class="fas fa-marker" title="Modificar"></i>
+                                    </a>
+                                    <a href="#" class="confirm-delete" data-id="{{id}}">
+                                        <i class="far fa-trash-alt" title="Eliminar"></i>
+                                    </a>
+                                    <a href="/evaluations/{{id}}">
+                                        <i class="fas fa-clipboard-list" title="Evaluacion"></i>
+                                    </a>
+                                    <a href="/plans/{{id}}">
+                                        <i class="fas fa-book" title="Plan"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {{else}}
+                            <tr class="text-center">
+                                <td colspan="7">No existen registros</td>
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="col col-xs-8">
-            <nav aria-label="navigation" class="float-right" role="pagination">
-                {{{paginate pagination }}}
-            </nav>
+        <div class="card-footer p-0">
+            <div class="row">
+                <div class="col-8">
+                    <a href="/athletes/add" class="btn btn-success">
+                        <i class="fas fa-plus" title="Nuevo"></i>
+                        <span>Nuevo</span>
+                    </a>
+                </div>
+                <div class="col-4">
+                    <nav aria-label="navigation" class="float-right" role="pagination">
+                        {{{paginate pagination }}}
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <span class="d-block bg-primary text-white text-center">Listado de Atletas</span>
-        </div>
-    </div>
-    <table class="table table-striped table-sm">
-        <thead>
-            <tr class="text-center">
-                <th scope="col">Nombres</th>
-                <th scope="col">Apellidos</th>
-                <th scope="col">Nacimiento</th>
-                <th scope="col">Edad</th>
-                <th scope="col">Telefono</th>
-                <th scope="col">Estado</th>
-                <th scope="col">Accion</th>
-            </tr>
-        </thead>
-        <tbody>
-            {{#each Athletes}}
-            <tr>
-                <td scope="row">{{firstname}}</td>
-                <td>{{lastname}}</td>
-                <td>{{birthdate}}</td>
-                <td>{{age}}</td>
-                <td>{{phonenumber}}</td>
-                <td class="text-center">
-                    {{#if active}}
-                    Activo
-                    {{else}}
-                    Inactivo
-                    {{/if}}
-                </td>
-                <td class="text-center">
-                    <a href="/athletes/edit/{{id}}" >
-                        <i class="fas fa-marker" title="Modificar"></i>
-                    </a>
-                    <a href="/athletes/{{id}}?_method=DELETE">
-                        <i class="far fa-trash-alt" title="Eliminar"></i>
-                    </a>
-                     <a href="/evaluations/{{id}}">
-                        <i class="fas fa-clipboard-list" title="Evaluacion"></i>
-                    </a>
-                     <a href="/plans/{{id}}">
-                        <i class="fas fa-book" title="Plan"></i>
-                    </a>
-                </td>
-            </tr>
-            {{else}}
-            <tr class="text-center">
-                <td colspan="7">No existen registros</td>
-            </tr>
-            {{/each}}
 
-        </tbody>
-    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-white bg-primary">
+                    <h5 class="modal-title" id="modalDeleteTitle">ELIMINAR ATLETA</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Desea eliminar el registro?</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id="btnYes" class="btn btn-primary">Si</a>
+                    <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-secondary">No</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-</div>
+
+<script>
+window.onload = function(e){ 
+    $('.confirm-delete').on('click', function(e) {
+        e.preventDefault();
+        var id = $(this).data('id');
+        $('#modalDelete').data('id', id).modal('show');
+    });
+    $('#btnYes').click(function() {
+        var id = $('#modalDelete').data('id');
+        $(location).attr('href', '/athletes/'+ id + '?_method=DELETE')
+        $('#modalDelete').modal('hide');
+    });
+}
+</script>
