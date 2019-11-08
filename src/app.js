@@ -6,6 +6,7 @@ import multer from "multer";
 import bodyParser from "body-parser";
 
 // importing routes
+import authenticationRoutes from "./routes/authentication";
 import usersRoutes from "./routes/users";
 import athletesRoutes from "./routes/athletes";
 import evaluationsRoutes from "./routes/evaluation";
@@ -43,6 +44,7 @@ app.use(function (req, res, next) {
 });
 
 // routes
+app.use('/', authenticationRoutes);
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);
 app.use('/evaluations', evaluationsRoutes);
