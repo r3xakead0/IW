@@ -4,6 +4,8 @@ import path from "path";
 import exphbs from "express-handlebars";
 import multer from "multer";
 import bodyParser from "body-parser";
+import passport from "passport";
+import session from "express-session";
 
 // importing routes
 import authenticationRoutes from "./routes/authentication";
@@ -14,6 +16,7 @@ import plansRoutes from "./routes/plans";
 
 // initialization
 const app = express();
+require('./lib/passport');
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -32,6 +35,11 @@ app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer({ dest: path.join(__dirname, '/public/document/temp') }).single('documento'))
+
+app.use(session({ secret: 'chainiz',resave: true, saveUninitialized:true}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(function (req, res, next) {
   if (req.query._method == 'DELETE') {
     req.method = 'DELETE';

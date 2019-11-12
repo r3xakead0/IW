@@ -21,7 +21,6 @@ export async function addPlan(req, res) {
 
 export async function createPlan(req, res) {
     const { athleteid, plandate, sport, minutes, meters, jobs, type } = req.body;
-    console.log(athleteid, plandate, sport, minutes, meters, jobs, type);
     const createddate = Date.now();
     try {
         let newPlan = await Plan.create({

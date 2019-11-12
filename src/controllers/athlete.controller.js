@@ -57,7 +57,6 @@ export async function createAthlete(req, res) {
             'otheractivities', 'backgrounddescription', 'objectives', 'nutritiondescription',
             'active', 'createddate']
         });
-        console.log(newAthlete);
         if (newAthlete) {
             res.redirect('/athletes');
         }
