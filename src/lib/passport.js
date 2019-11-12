@@ -1,17 +1,15 @@
 import passport from "passport";
-const LocalStrategy = require('passport-local').Strategy;
-
 import User from "../models/User";
 import helpers from "./helpers";
 
+const LocalStrategy = require('passport-local').Strategy;
+
 passport.use('local.signin', new LocalStrategy({
   usernameField: 'username',
-  passwordField: 'password',
-  passReqToCallback: true
+  passwordField: 'password'
 }, async (username, password, done) => {
 
   const user = await User.findOne({
-      attributes: ['id', 'name', 'password', 'fullname', 'email'],
       where: { name: username } 
   });
 
@@ -27,4 +25,13 @@ passport.use('local.signin', new LocalStrategy({
   }
 }));
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
 
+passport.deserializeUser(async (id, done) => {
+  const user = await User.findOne({
+    where: { id } 
+  });
+  done(null, user);
+});

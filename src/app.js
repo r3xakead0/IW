@@ -8,7 +8,8 @@ import passport from "passport";
 import session from "express-session";
 
 // importing routes
-import authenticationRoutes from "./routes/authentication";
+import indexRoutes from "./routes/index";
+//import authenticationRoutes from "./routes/authentication";
 import usersRoutes from "./routes/users";
 import athletesRoutes from "./routes/athletes";
 import evaluationsRoutes from "./routes/evaluation";
@@ -36,7 +37,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(multer({ dest: path.join(__dirname, '/public/document/temp') }).single('documento'))
 
-app.use(session({ secret: 'chainiz',resave: true, saveUninitialized:true}));
+app.use(session({ secret: 'chainiz', resave: true, saveUninitialized: true }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -52,7 +53,8 @@ app.use(function (req, res, next) {
 });
 
 // routes
-app.use('/', authenticationRoutes);
+app.use('/', indexRoutes);
+//app.use('/', authenticationRoutes);
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);
 app.use('/evaluations', evaluationsRoutes);
