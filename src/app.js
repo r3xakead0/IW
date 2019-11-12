@@ -9,7 +9,6 @@ import session from "express-session";
 
 // importing routes
 import indexRoutes from "./routes/index";
-//import authenticationRoutes from "./routes/authentication";
 import usersRoutes from "./routes/users";
 import athletesRoutes from "./routes/athletes";
 import evaluationsRoutes from "./routes/evaluation";
@@ -31,7 +30,7 @@ app.engine('hbs', exphbs({
 }))
 app.set('view engine', 'hbs');
 
-// middlewares
+// Middlewares
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -52,9 +51,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+// Global variables
+app.use((req, res, next) => {
+  app.locals.user = req.user;
+  next();
+});
+
 // routes
 app.use('/', indexRoutes);
-//app.use('/', authenticationRoutes);
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);
 app.use('/evaluations', evaluationsRoutes);
