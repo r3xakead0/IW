@@ -3,7 +3,7 @@ import { isLoggedIn } from "../lib/auth";
 
 const router = Router();
 
-import { addEvaluation, createEvaluation, updateEvaluation } from "../controllers/Evaluation.controller";
+import { addEvaluation, createEvaluation, updateEvaluation } from "../controllers/evaluation.controller";
 
 router.get('/:id', isLoggedIn, addEvaluation);
 
