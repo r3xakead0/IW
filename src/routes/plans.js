@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { isLoggedIn } from "../lib/auth";
-import { addPlan, createPlan, editPlan, getPlans, deletePlan, updatePlan } from "../controllers/Plan.controller";
+import { addPlan, createPlan, editPlan, getPlans, deletePlan, updatePlan } from "../controllers/plan.controller";
 
 const router = Router();
 
