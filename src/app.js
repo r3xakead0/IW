@@ -6,17 +6,10 @@ import multer from "multer";
 import bodyParser from "body-parser";
 import passport from "passport";
 import session from "express-session";
+import "./lib/passport";
 
-// importing routes
-import indexRoutes from "./routes/index";
-import usersRoutes from "./routes/users";
-import athletesRoutes from "./routes/athletes";
-import evaluationsRoutes from "./routes/evaluation";
-import plansRoutes from "./routes/plans";
-
-// initialization
+// Initialization
 const app = express();
-require('./lib/passport');
 
 // Settings
 app.set('port', process.env.PORT || 3000);
@@ -57,7 +50,14 @@ app.use((req, res, next) => {
   next();
 });
 
-// routes
+// Importing routes
+import indexRoutes from "./routes/index";
+import usersRoutes from "./routes/users";
+import athletesRoutes from "./routes/athletes";
+import evaluationsRoutes from "./routes/evaluation";
+import plansRoutes from "./routes/plans";
+
+// Routes
 app.use('/', indexRoutes);
 app.use('/users', usersRoutes);
 app.use('/athletes', athletesRoutes);

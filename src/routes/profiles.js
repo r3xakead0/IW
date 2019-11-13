@@ -1,7 +1,7 @@
 import { Router } from "express";
-const router = Router();
-
 import { createProfile, getProfiles, getOneProfile, deleteProfile, updateProfile } from "../controllers/profile.controller";
+
+const router = Router();
 
 // /api/Profiles/
 router.post('/', createProfile);

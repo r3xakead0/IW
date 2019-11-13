@@ -1,8 +1,8 @@
 import passport from "passport";
 import { Router } from "express";
-const router = Router();
+import { isLoggedIn } from "../lib/auth";
 
-const { isLoggedIn } = require('../lib/auth');
+const router = Router();
 
 router.get('/', async (req, res) => {
     res.render('index');
@@ -29,4 +29,4 @@ router.get('/profile', isLoggedIn, (req, res) => {
     res.render('profile');
 });
 
-module.exports = router;
+export default router;
