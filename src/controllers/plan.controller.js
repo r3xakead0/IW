@@ -61,7 +61,7 @@ export async function editPlan(req, res) {
             attributes: ['id', 'firstname', 'lastname', 'birthdate', 'age'],
             where: { id: plan.athleteid }
         });
-
+        
         res.render('plans/edit', { athlete, plan });
     } catch (e) {
         res.status(500).json({
@@ -91,7 +91,7 @@ export async function updatePlan(req, res) {
             }
         );
         if (updateRowCount > 0) {
-            res.redirect('/athletes/' + athleteid);
+            res.redirect('/plans/' + athleteid);
         }
     } catch (e) {
         res.status(500).json({
