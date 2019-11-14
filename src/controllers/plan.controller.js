@@ -91,7 +91,7 @@ export async function updatePlan(req, res) {
             }
         );
         if (updateRowCount > 0) {
-            res.redirect('/athletes' + athleteid);
+            res.redirect('/athletes/' + athleteid);
         }
     } catch (e) {
         res.status(500).json({
