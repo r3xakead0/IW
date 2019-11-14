@@ -10,7 +10,7 @@ export async function addPlan(req, res) {
             where: { id }
         });
         
-        res.render('Plans/add', { athlete });
+        res.render('plans/add', { athlete });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -62,7 +62,7 @@ export async function editPlan(req, res) {
             where: { id: plan.athleteid }
         });
 
-        res.render('Plans/edit', { athlete, plan });
+        res.render('plans/edit', { athlete, plan });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -160,7 +160,7 @@ export async function deletePlan(req, res) {
         });
 
         if (deleteRowCount > 0) {
-            res.redirect('/Plans/' + plan.athleteid);
+            res.redirect('/plans/' + plan.athleteid);
         }
     } catch (e) {
         res.status(500).json({

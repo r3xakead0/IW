@@ -9,7 +9,7 @@ export async function addAthlete(req, res) {
                 ['id', 'ASC']
             ]
         });
-        res.render('Athletes/add', { questions });
+        res.render('athletes/add', { questions });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
@@ -92,7 +92,7 @@ export async function editAthlete(req, res) {
             ]
         });
 
-        res.render('Athletes/edit', { athlete, questions });
+        res.render('athletes/edit', { athlete, questions });
     } catch (e) {
         res.status(500).json({
             message: 'Something goes wrong',
