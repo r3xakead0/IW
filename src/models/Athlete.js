@@ -50,10 +50,10 @@ const Athlete = sequelize.define('athletes', {
         type: Sequelize.INTEGER
     },
     weight: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DECIMAL(5, 2)
     },
     bloodtype: {
-        type: Sequelize.STRING(10)
+        type: Sequelize.STRING(20)
     },
     fatpercentage: {
         type: Sequelize.DECIMAL(5, 2)

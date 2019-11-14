@@ -95,38 +95,38 @@
                         <div class="form-row">
                             <div class="form-group col-md-3">
                                 <label for="size">Talla (cm)</label>
-                                <input type="number" class="form-control text-right" id="size" name="size" placeholder="0.00" value="{{athlete.size}}">
+                                <input type="number" class="form-control text-right" id="size" name="size" placeholder="0" value="{{athlete.size}}" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="weight">Peso (kg)</label>
-                                <input type="number" class="form-control text-right" id="weight" name="weight" placeholder="0.00" value="{{athlete.weight}}">
+                                <input type="number" class="form-control text-right" id="weight" name="weight" step="0.01" placeholder="0.00" value="{{athlete.weight}}" required>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="bloodtype">Grupo Sanguineo</label>
                                 <select class="form-control" id="bloodtype" name="bloodtype">
-                                    <option value="O negativo">O negativo</option>
-                                    <option value="O positivo">O positivo</option>
-                                    <option value="A negativo">A negativo</option>
-                                    <option value="A positivo">A positivo</option>
-                                    <option value="B negativo">B negativo</option>
-                                    <option value="B positivo">B positivo</option>
-                                    <option value="AB negativo">AB negativo</option>
-                                    <option value="AB positivo">AB positivo</option>
+                                    <option value="O negativo" {{isSelected athlete.bloodtype "O negativo"}}>O negativo</option>
+                                    <option value="O positivo" {{isSelected athlete.bloodtype "O positivo"}}>O positivo</option>
+                                    <option value="A negativo" {{isSelected athlete.bloodtype "A negativo"}}>A negativo</option>
+                                    <option value="A positivo" {{isSelected athlete.bloodtype "A positivo"}}>A positivo</option>
+                                    <option value="B negativo" {{isSelected athlete.bloodtype "B negativo"}}>B negativo</option>
+                                    <option value="B positivo" {{isSelected athlete.bloodtype "B positivo"}}>B positivo</option>
+                                    <option value="AB negativo" {{isSelected athlete.bloodtype "AB negativo"}}>AB negativo</option>
+                                    <option value="AB positivo" {{isSelected athlete.bloodtype "AB positivo"}}>AB positivo</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3">
                                 <label for="fatpercentage">% Grasa</label>
-                                <input type="number" class="form-control text-right" id="fatpercentage" name="fatpercentage" placeholder="0.00" value="{{athlete.fatpercentage}}">
+                                <input type="number" class="form-control text-right" id="fatpercentage" name="fatpercentage" step="0.01" placeholder="0.00" value="{{athlete.fatpercentage}}" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="waistcircumference">Circunferencia Cintura (cm)</label>
-                                <input type="number" class="form-control text-right" id="waistcircumference" name="waistcircumference" placeholder="0.00" value="{{athlete.waistcircumference}}">
+                                <input type="number" class="form-control text-right" id="waistcircumference" name="waistcircumference" placeholder="0" value="{{athlete.waistcircumference}}" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="middlethighcircumference">Circunferencia del medio muslo (cm)</label>
-                                <input type="number" class="form-control text-right" id="middlethighcircumference" name="middlethighcircumference" placeholder="0.00" value="{{athlete.middlethighcircumference}}">
+                                <input type="number" class="form-control text-right" id="middlethighcircumference" name="middlethighcircumference" placeholder="0" value="{{athlete.middlethighcircumference}}" required>
                             </div>
                         </div>
                     </div>
