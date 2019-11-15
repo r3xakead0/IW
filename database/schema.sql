@@ -44,6 +44,7 @@ CREATE TABLE IF NOT EXISTS athletes(
 	lastname varchar(50) NOT NULL CHECK (lastname <> ''),
 	birthdate date NOT NULL,
 	phonenumber varchar(20),
+	sex varchar(20),
 	running boolean NOT NULL DEFAULT FALSE,
 	cycling boolean NOT NULL DEFAULT FALSE,
 	swimming boolean NOT NULL DEFAULT FALSE,

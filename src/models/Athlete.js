@@ -28,6 +28,9 @@ const Athlete = sequelize.define('athletes', {
     phonenumber: {
         type: Sequelize.STRING(20)
     },
+    sex: {
+        type: Sequelize.STRING(20)
+    },
     running: {
         type: Sequelize.BOOLEAN
     },
